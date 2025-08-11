@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-map-demo
+  labels: 
+    project: config-map
+    env: config
+data:
+  COURSE: "DevSecOps"
+  Duration: "120HRS"
+
+
+# after created the ConfigMap it should refers the Pod
+# see 09-pod-config and understand
+
+---
+
+# apiVersion: v1
+# kind: Pod
+# metadata: 
+#   name: pod-config-map-demo
+# spec: 
+#   containers: 
+#     - name: nginx
+#       image: nginx
+#       envFrom:
+#         - configMapRef:
+#             name: config-map-demo

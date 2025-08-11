@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: resource-demo
+  labels:
+    max: 500mi
+    min: 250mi
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      resources:
+        requests: # soft limit
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+        
+
+# kubectl top pods => shows the memory and processor details
+
+
+# [ ec2-user@ip-172-31-85-108 ~/k8-s ]$ kubectl top pods
+# NAME              CPU(cores)   MEMORY(bytes)
+# annotations       0m           2Mi
+# env-demo          0m           3Mi
+# labels            0m           3Mi
+# multi-container   0m           3Mi
+# resource-demo     0m           2Mi
