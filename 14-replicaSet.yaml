@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata: 
+  name: replica-demo
+  labels: 
+    project: p1
+    app: replica
+    tier: frontend
+    environment: dev
+    component: test
+
+spec:
+  replicas: 3 # Specifies the number or desired pods to run
+  selectors:
+    matchLables: 
+      app: replica
+  template:
+    metadata: 
+      labels: 
+        app: replica
+    spec: 
+      containers:
+        - name: nginx
+          image: nginx:1.25.3 # Use a specific NGINX image version
+          ports:
+            -containerPort: 80 # Expose port 80 for HTTP traffic
